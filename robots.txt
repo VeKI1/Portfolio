@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://veki1.github.io/Portfolio/sitemap.xml
