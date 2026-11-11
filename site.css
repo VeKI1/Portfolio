@@ -66,8 +66,8 @@ html.cc input,html.cc textarea{cursor:text!important}
 .plink:hover,.plink:focus-visible{border-color:var(--ink);color:var(--ink)}
 .plink-pri{background:var(--acc);border-color:var(--acc);color:#0C0D0B!important}
 .plink-pri:hover,.plink-pri:focus-visible{background:var(--ink);border-color:var(--ink);color:var(--bg)!important}
-@media (max-width:1023px){.proj{grid-template-columns:40px minmax(0,1fr)}.proj>div:nth-child(3),.proj-links{grid-column:2}.proj-links{flex-direction:row;flex-wrap:wrap}}
-@media (max-width:539px){.proj{grid-template-columns:minmax(0,1fr);padding:22px 18px}.proj>div:nth-child(3),.proj-links{grid-column:1}.proj-links .plink{flex:1 1 auto}}
+@media (max-width:1023px){.proj{grid-template-columns:40px minmax(0,1fr)}.proj>div:nth-child(4),.proj-links{grid-column:2}.proj-links{flex-direction:row;flex-wrap:wrap}}
+@media (max-width:539px){.proj{grid-template-columns:minmax(0,1fr);padding:22px 18px}.proj>div:nth-child(4),.proj-links{grid-column:1}.proj-links .plink{flex:1 1 auto}}
 
 /* ---------- Skills ---------- */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:1px solid var(--ln);border-left:1px solid var(--ln)}
@@ -101,3 +101,29 @@ input[aria-invalid=true],textarea[aria-invalid=true]{border-bottom-color:#ff6b5e
 
 /* Page transition: keep the overlay down on arrival until app.js slides it away (no flash of content) */
 html.ov-in [data-ref=ov]{transform:translateY(0)!important}
+
+/* ---------- Clients (social proof, inside the hero) ---------- */
+.clients{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--ln);padding-top:16px}
+.clients-title{margin:0;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.clients-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px}
+.ctile{flex:0 1 auto;min-height:88px;padding:8px 14px;display:grid;place-items:center;border-radius:3px;transition:background .3s;min-width:0}
+.ctile:hover{background:var(--sf)}
+.ctile>div{transform:none!important;zoom:.9}
+.ctile img[src*="mikerenje"]{width:72px!important;height:72px!important}
+@media (max-width:1023px){.clients-row{justify-content:center;gap:4px 20px}}
+@media (max-width:599px){
+  .clients-row{gap:0 8px}
+  .ctile{min-height:64px;padding:6px 8px}
+  .ctile>div{zoom:.7}
+}
+
+/* ---------- Project image on cards: shown on touch / smaller screens, where there is no hover preview ---------- */
+.proj-media{display:none}
+.proj-media-in{display:grid;place-items:center;width:100%;height:100%}
+@media (hover:none),(max-width:1023px){
+  .proj-media{display:grid;place-items:center;grid-column:1/-1;height:clamp(150px,30vw,210px);border:1px solid var(--ln);border-radius:3px;background:var(--sf);overflow:hidden}
+  .proj-media-in>div>div{transform:scale(1.3)!important}
+  .proj:hover .proj-media,.proj:focus-within .proj-media{border-color:color-mix(in oklch,var(--ink) 30%,transparent)}
+}
+@media (max-width:599px){.proj-media-in>div>div{transform:scale(1.05)!important}}
+@media (hover:none) and (min-width:1024px){.proj{grid-template-columns:48px minmax(0,1.1fr) minmax(0,1.3fr) auto}}
